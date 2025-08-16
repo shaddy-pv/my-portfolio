@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Futuristic Portfolio Design System */
+@layer base {
+  :root {
+    /* Core Dark Theme */
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    
+    /* Cards & Surfaces */
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --popover: 224 71% 4%;
+    --popover-foreground: 213 31% 91%;
+    
+    /* Primary Neon Cyan */
+    --primary: 198 93% 60%;
+    --primary-foreground: 224 71% 4%;
+    
+    /* Secondary Purple */
+    --secondary: 263 85% 70%;
+    --secondary-foreground: 224 71% 4%;
+    
+    /* Accent Neon Pink */
+    --accent: 330 85% 65%;
+    --accent-foreground: 224 71% 4%;
+    
+    /* Muted */
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 10% 65%;
+    
+    /* Destructive */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    
+    /* Borders & Inputs */
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 198 93% 60%;
+    --radius: 0.75rem;
+    
+    /* Glass Effect */
+    --glass-bg: 224 71% 4% / 0.1;
+    --glass-border: 198 93% 60% / 0.2;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(198 93% 60%) 0%, hsl(263 85% 70%) 100%);
+    --gradient-secondary: linear-gradient(135deg, hsl(263 85% 70%) 0%, hsl(330 85% 65%) 100%);
+    --gradient-glow: radial-gradient(circle at center, hsl(198 93% 60% / 0.3) 0%, transparent 70%);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(198 93% 60% / 0.4);
+    --shadow-neon: 0 0 20px hsl(198 93% 60% / 0.6), 0 0 40px hsl(198 93% 60% / 0.4);
+    --shadow-glass: 0 8px 32px hsl(224 71% 4% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-inter;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass Morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-glass);
+  }
+  
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Neon Glow Effects */
+  .glow-primary {
+    box-shadow: var(--shadow-neon);
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 20px hsl(198 93% 60% / 0.8);
+  }
+  
+  /* Floating Animation */
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+  
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  /* Pulse Glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from { box-shadow: 0 0 20px hsl(198 93% 60% / 0.4); }
+    to { box-shadow: 0 0 40px hsl(198 93% 60% / 0.8); }
+  }
+  
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(215 28% 17%);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(198 93% 60%);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(263 85% 70%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
