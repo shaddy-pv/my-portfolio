@@ -3,20 +3,28 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Github } from 'lucide-react';
-import projectImage1 from '@/assets/project_1_a.jpg'; // Assuming a placeholder image exists
-import projectImage2 from '@/assets/project_1_b.jpg'; // Correcting to an existing file
-import projectImage3 from '@/assets/project_1_c.jpg'; // Correcting to an existing file
-import projectImage4 from '@/assets/project_1_d.jpg'; // Correcting to an existing file
-import projectImage5 from '@/assets/project_1_e.jpg'; // Assuming this file exists
-import projectImage6 from '@/assets/Project_2_a.png'; // Assuming this file exists
-import projectImage7 from '@/assets/Project_2_b.png'; // Assuming this file exists
-import projectImage8 from '@/assets/Project_2_c.png'; // Correcting extension to .png
-import projectImage9 from '@/assets/Project_2_d.png'; // Assuming this file exists
-import comingSoonImage from '@/assets/placeholder.svg'; // Using a correct placeholder image
+
+import projectImage1 from '@/assets/project_1_a.jpg';
+import projectImage2 from '@/assets/project_1_b.jpg';
+import projectImage3 from '@/assets/project_1_c.jpg';
+import projectImage4 from '@/assets/project_1_d.jpg';
+import projectImage5 from '@/assets/project_1_e.jpg';
+import projectImage6 from '@/assets/Project_2_a.png';
+import projectImage7 from '@/assets/Project_2_b.png';
+import projectImage8 from '@/assets/Project_2_c.png';
+import projectImage9 from '@/assets/Project_2_d.png';
+import projectImage10 from '@/assets/Project_3_a.png';
+import projectImage11 from '@/assets/Project_3_b.png';
+import projectImage12 from '@/assets/Project_3_c.png';
+import projectImage13 from '@/assets/Project_3_d.png';
+import projectImage14 from '@/assets/Project_4_a.png';
+import projectImage15 from '@/assets/Project_4_b.png';
+import projectImage16 from '@/assets/Project_4_c.png';
+import projectImage17 from '@/assets/Project_4_d.png';
+import projectImage18 from '@/assets/Project_4_e.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Define a type for the project data to resolve the red line error
 interface Project {
   id: number;
   title: string;
@@ -25,6 +33,7 @@ interface Project {
   tech: string[];
   featured: boolean;
   liveDemoUrl?: string;
+  githubUrl?: string;
 }
 
 const projects: Project[] = [
@@ -44,22 +53,27 @@ const projects: Project[] = [
     images: [projectImage6, projectImage7, projectImage8, projectImage9],
     tech: ['Next.js', 'React.js', 'WebSocket', 'Redux'],
     featured: true,
+    // No liveDemoUrl or githubUrl → Buttons disabled
   },
   {
     id: 3,
-    title: 'Coming Soon',
-    description: 'Exciting new project in development. Stay tuned for updates!',
-    images: null,
-    tech: ['TBA'],
-    featured: false,
+    title: 'Legal-Ease-India',
+    description: 'A comprehensive legal assistance platform designed to help users understand laws easily.',
+    images: [projectImage14, projectImage15, projectImage16, projectImage17, projectImage18],
+    tech: ['Next.js', 'React.js', 'WebSocket', 'Redux'],
+    featured: true,
+    liveDemoUrl: 'https://legal-ease-india.vercel.app/',
+    githubUrl: 'https://github.com/shaddy-pv/Legal-ease-India',
   },
   {
     id: 4,
-    title: 'Coming Soon',
-    description: 'Exciting new project in development. Stay tuned for updates!',
-    images: null,
-    tech: ['TBA'],
-    featured: false,
+    title: 'AquaPure',
+    description: 'It is a freelance website which was made by me and my team.',
+    images: [projectImage10, projectImage11, projectImage12, projectImage13],
+    tech: ['Next.js', 'React.js', 'WebSocket', 'Redux'],
+    featured: true,
+    liveDemoUrl: 'https://aqua-pure-nu.vercel.app/',
+    githubUrl: 'https://github.com/shaddy-pv/AquaPure',
   },
   {
     id: 5,
@@ -72,7 +86,7 @@ const projects: Project[] = [
   {
     id: 6,
     title: 'Coming Soon',
-    description: 'Revolutionary new application in the works. Can\'t wait to share!',
+    description: "Revolutionary new application in the works. Can't wait to share!",
     images: null,
     tech: ['TBA'],
     featured: false,
@@ -86,13 +100,9 @@ const ProjectsSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Cards animation
-      gsap.fromTo('.project-card',
-        { 
-          opacity: 0, 
-          y: 100,
-          scale: 0.8
-        },
+      gsap.fromTo(
+        '.project-card',
+        { opacity: 0, y: 100, scale: 0.8 },
         {
           opacity: 1,
           y: 0,
@@ -105,7 +115,7 @@ const ProjectsSection = () => {
             start: 'top 80%',
             end: 'bottom 20%',
             toggleActions: 'play none none reverse',
-          }
+          },
         }
       );
     }, sectionRef);
@@ -117,22 +127,23 @@ const ProjectsSection = () => {
     if (hoveredCardId !== null) {
       const tl = gsap.timeline({ repeat: -1 });
       const card = document.querySelector(`.project-card[data-id="${hoveredCardId}"] .image-track`);
-      
-      const project = projects.find(p => p.id === hoveredCardId);
+
+      const project = projects.find((p) => p.id === hoveredCardId);
       const imageCount = project?.images?.length || 1;
-      // The offset is based on the number of images to ensure a perfect loop
-      const xOffset = `-${(100 / imageCount) * (imageCount - 1)}%`; 
+      const xOffset = `-${(100 / imageCount) * (imageCount - 1)}%`;
 
       if (card) {
+         gsap.set(card, { x: 0 });
         tl.to(card, {
           x: xOffset,
-          duration: 2.5, 
-          ease: "none",
+          duration: 2.5,
+          ease: 'none',
         });
       }
 
       return () => {
         tl.kill();
+        if (card) gsap.set(card, { x: 0 });
       };
     }
   }, [hoveredCardId]);
@@ -168,7 +179,7 @@ const ProjectsSection = () => {
                         key={index}
                         src={image}
                         alt={`${project.title} - ${index}`}
-                        className={`w-${100 / project.images.length}/full h-full object-cover flex-shrink-0`}
+                        className="w-${100 / project.images.length}/full h-full object-cover flex-shrink-0"
                       />
                     ))}
                   </div>
@@ -208,13 +219,36 @@ const ProjectsSection = () => {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3 justify-end">
-                  <Button variant="neon" size="sm" className="flex-1">
-                    <a href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer"></a>
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
+                  <Button
+                    variant="neon"
+                    size="sm"
+                    className="flex-1"
+                    disabled={!project.liveDemoUrl}
+                    asChild
+                  >
+                    <a
+                      href={project.liveDemoUrl || '#'}
+                      target={project.liveDemoUrl ? '_blank' : undefined}
+                      rel={project.liveDemoUrl ? 'noopener noreferrer' : undefined}
+                    >
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </a>
                   </Button>
-                  <Button variant="glass" size="sm">
-                    <Github className="w-4 h-4" />
+
+                  <Button
+                    variant="glass"
+                    size="sm"
+                    disabled={!project.githubUrl}
+                    asChild
+                  >
+                    <a
+                      href={project.githubUrl || '#'}
+                      target={project.githubUrl ? '_blank' : undefined}
+                      rel={project.githubUrl ? 'noopener noreferrer' : undefined}
+                    >
+                      <Github className="w-4 h-4" />
+                    </a>
                   </Button>
                 </div>
               </div>

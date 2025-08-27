@@ -63,18 +63,39 @@
 }
 
 @layer base {
+  /* CSS Reset - Essential for proper centering */
   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     @apply border-border;
+  }
+  
+  html, body {
+    height: 100%;
+    width: 100%;
   }
   
   body {
     @apply bg-background text-foreground font-inter;
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    /* Prevent unwanted zooming and scaling */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Ensure proper touch behavior on mobile */
+    touch-action: manipulation;
   }
   
   html {
     scroll-behavior: smooth;
+    /* Prevent zoom on input focus */
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 }
 
@@ -146,15 +167,5 @@
   
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(263 85% 70%);
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 }

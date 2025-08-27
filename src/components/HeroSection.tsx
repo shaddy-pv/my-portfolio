@@ -63,7 +63,7 @@ const HeroSection = () => {
   };
   
   const handleDownloadResume = () => {
-    const resumeUrl = '/Shadan-Resume.pdf'; // Apne resume file ka sahi naam yahan daalein
+    const resumeUrl = '/Shadan-Resume.pdf'; // resume file name 
     const link = document.createElement('a');
     link.href = resumeUrl;
     link.setAttribute('download', 'Shadan-Resume.pdf');
