@@ -99,8 +99,8 @@ const HeroSection = () => {
           ref={subtitleRef}
           className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
         >
-          Crafting digital experiences with cutting-edge technologies. 
-          Specializing in React, Node.js, and modern web development.
+          Tried to make a futuristic portfolio or you say simple portfolio.
+          Where I share my skills and showcase the projects I’ve worked on.
         </p>
         
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
